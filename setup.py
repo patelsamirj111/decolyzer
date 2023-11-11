@@ -10,7 +10,7 @@ setup(
     url = 'https://github.com/patelsamirj111',
     download_url = 'https://github.com/patelsamirj111/decolyzer/archive/refs/tags/v1.0.tar.gz',
     keywords = ['decorator', 'python', 'wireshark', 'scp', 'tcpdump', 'paramiko', 'ssh', 'process'],
-    install_requires=[            # I get to this in a second
+    install_requires=[           
         'logging',
         'paramiko',
         'pyshark',
