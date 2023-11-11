@@ -1,6 +1,6 @@
 # decolyzer    
 
-Python decorator package to allow to run any command/process before and after the execution of your own function code. It also provides functions to create ssh connections, scp operation, channel creation, tcpdump capture analysis.
+Python decorator package to run any command/process before and after the execution of your own function. It also provides functions to create ssh connections, scp operation, channel creation, tcpdump capture analysis.
 
 Extended documentation: https://github.com/patelsamirj111/decolyzer
 
