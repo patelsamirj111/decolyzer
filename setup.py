@@ -1,0 +1,32 @@
+from distutils.core import setup
+setup(
+    name = 'decolyzer',
+    packages = ['decolyzer'],
+    version = '1.0',
+    license='MIT',
+    description = 'decolyzer package includes functions which can help to enhance your own function implementation',
+    author = 'Samir',
+    author_email = 'samir198@gmail.com',
+    url = 'https://github.com/patelsamirj111',
+    download_url = 'https://github.com/patelsamirj111/decolyzer/archive/refs/tags/v1.0.tar.gz',
+    keywords = ['decorator', 'python', 'wireshark', 'scp', 'tcpdump', 'paramiko', 'ssh', 'process'],
+    install_requires=[            # I get to this in a second
+        'logging',
+        'paramiko',
+        'pyshark',
+        'scp',
+    ],
+    classifiers=[
+        'Development Status :: 5 - Production/Stable',
+        'Intended Audience :: Developers',
+        'Topic :: Software Development :: Build Tools',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
+    ],
+)
