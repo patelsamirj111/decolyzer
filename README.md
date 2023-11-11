@@ -111,7 +111,7 @@ channel_created, channel_session = channel_creation(linuxssh, chmod_cmd, channel
              return False
 ```
 
-#### decogoat function arguments:
+#### channel_creation function arguments:
 ```
 def channel_creation(ssh_object, cmd, channel_creation_sleep=0):
     """
@@ -172,7 +172,7 @@ def scp_operation(fromip, username='root', password='PassWord', port=22,
     """
 ```
 
-### 4) analyze_capture function: The function to analyze the tcpdump/wireshare captures.
+### 4) analyze_capture function: The function to analyze the tcpdump/wireshark captures.
 #### usage (Example)
 ```
 # To see packets only with SSH protocol layer in it
