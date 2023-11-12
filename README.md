@@ -45,14 +45,14 @@ linuxssh = Ssh('10.184.30.28', port=22, username='root', password='PassWord')
 #### usage (Example)
 ```
 @decogoat('10.184.30.28', port=22, username='root',
-                    password='PassWord',
-                    command='tcpdump -i colan-x -w /tmp/capt.pcap',
-                    change_file_permission=True, chmod_cmd='chmod 777 /tmp/capt.pcap',
-                    channel_creation_sleep=0, delete_file=True,
-                    delete_cmd='rm -rf /tmp/capt.pcap', terminate_cmd='killall -e tcpdump')
-        def create_netconf_session(username, password, *args):
-            connectobj = Sessioncreation('10.184.30.28', "CLI", username, password, "22")
-            connectobj.connect()
+    password='PassWord',
+    command='tcpdump -i colan-x -w /tmp/capt.pcap',
+    change_file_permission=True, chmod_cmd='chmod 777 /tmp/capt.pcap',
+    channel_creation_sleep=0, delete_file=True,
+    delete_cmd='rm -rf /tmp/capt.pcap', terminate_cmd='killall -e tcpdump')
+def create_netconf_session(username, password, *args):
+    connectobj = Sessioncreation('10.184.30.28', "CLI", username, password, "22")
+    connectobj.connect()
 ```
 Explanation of the above code: (goal is to run tcpdump process before/after the code execution from create_netconf_session function)
 1) delete_cmd - if delete_file is True, it will try to delete a file if present at the given location.
@@ -64,11 +64,11 @@ Explanation of the above code: (goal is to run tcpdump process before/after the 
 #### decogoat function arguments:
 ```
 def decogoat(hostip, port=22, username='root',
-             password='password', command='tcpdump -i eth1 -w /tmp/capt.pcap',
-             processname='tcpdump', change_file_permission=False,
-             chmod_cmd='chmod 777 /tmp/capt.pcap', channel_creation_sleep=0,
-             delete_file=False, delete_cmd='rm -rf /tmp/capt.pcap',
-             terminate_process=True, terminate_cmd='killall -e tcpdump'):
+    password='password', command='tcpdump -i eth1 -w /tmp/capt.pcap',
+    processname='tcpdump', change_file_permission=False,
+    chmod_cmd='chmod 777 /tmp/capt.pcap', channel_creation_sleep=0,
+    delete_file=False, delete_cmd='rm -rf /tmp/capt.pcap',
+    terminate_process=True, terminate_cmd='killall -e tcpdump'):
     """
     Function to start a process/script (e.g. tcpdump, top), run your function, end a process/script
     :param hostip: ip address of a host machine
@@ -93,9 +93,9 @@ def decogoat(hostip, port=22, username='root',
                     change_file_permission=True, chmod_cmd='chmod 777 /tmp/capt.pcap',
                     channel_creation_sleep=0, delete_file=True,
                     delete_cmd='rm -rf /tmp/capt.pcap', terminate_cmd='killall -e tcpdump')
-        def create_netconf_session(username, password, *args):
-            connectobj = Sessioncreation('10.184.30.28', "CLI", username, password, "22")
-            connectobj.connect()
+     def create_netconf_session(username, password, *args):
+         connectobj = Sessioncreation('10.184.30.28', "CLI", username, password, "22")
+         connectobj.connect()
     """
 ```
 
