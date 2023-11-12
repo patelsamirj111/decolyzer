@@ -2,13 +2,13 @@ from distutils.core import setup
 setup(
     name = 'decolyzer',
     packages = ['decolyzer'],
-    version = '1.0',
+    version = '1.1',
     license='MIT',
     description = 'decolyzer package includes functions which can help to enhance your own function implementation',
     author = 'Samir',
     author_email = 'samir198@gmail.com',
     url = 'https://github.com/patelsamirj111',
-    download_url = 'https://github.com/patelsamirj111/decolyzer/archive/refs/tags/v1.0.tar.gz',
+    download_url = 'https://github.com/patelsamirj111/decolyzer/archive/refs/tags/v1.1.tar.gz',
     keywords = ['decorator', 'python', 'wireshark', 'scp', 'tcpdump', 'paramiko', 'ssh', 'process'],
     install_requires=[
         'paramiko',
