@@ -44,7 +44,7 @@ linuxssh = Ssh('10.184.30.28', port=22, username='root', password='PassWord')
 ### 2) decogoat function: The decorator function which allows to run any command/process before and after your own function execution. (e.g. helpful to run tcpdump capture or run top process pre/post your function execution).
 #### usage (Example)
 ```
-@decogoat('10.184.30.28', port=22, username='root',
+@decogoat('10.184.30.28', port=28888, username='root',
     password='PassWord',
     command='tcpdump -i colan-x -w /tmp/capt.pcap',
     change_file_permission=True, chmod_cmd='chmod 777 /tmp/capt.pcap',
@@ -63,7 +63,7 @@ Explanation of the above code: (goal is to run tcpdump process before/after the 
 
 #### decogoat function arguments:
 ```
-def decogoat(hostip, port=22, username='root',
+def decogoat(hostip, port=28888, username='root',
     password='password', command='tcpdump -i eth1 -w /tmp/capt.pcap',
     processname='tcpdump', change_file_permission=False,
     chmod_cmd='chmod 777 /tmp/capt.pcap', channel_creation_sleep=0,
@@ -71,8 +71,11 @@ def decogoat(hostip, port=22, username='root',
     terminate_process=True, terminate_cmd='killall -e tcpdump'):
     """
     Function to start a process/script (e.g. tcpdump, top), run your function, end a process/script
+    Make sure to manually connect to the targeted host with the intended username/password and execute
+        a command to make sure that it does work and will not impact automation.
     :param hostip: ip address of a host machine
-    :param port: default port is 22
+    :param port: default port is 28888 
+        (connection to linux/unix OS to execute commands or processes e.g. top/tcpdump/ls/cat)
     :param username: username to connect with
     :param password: password fo the username
     :param command: comamnd to be executed before running your own function code, (e.g. tcpdump command)
@@ -87,7 +90,7 @@ def decogoat(hostip, port=22, username='root',
     :param terminate_cmd: command to terminate the targeted process
     :return: True if all steps passes Or False if failure is encountered
     :usage:
-     @decogoat('10.184.30.28', port=22, username='root',
+     @decogoat('10.184.30.28', port=28888, username='root',
                     password='PassWord',
                     command='tcpdump -i colan-x -w /tmp/capt.pcap',
                     change_file_permission=True, chmod_cmd='chmod 777 /tmp/capt.pcap',
@@ -135,7 +138,7 @@ def channel_creation(ssh_object, cmd, channel_creation_sleep=0):
 ### 4) scp_operation function: The function to copy files between two hosts. This function mimics linux scp command.
 #### usage (Example)
 ```
-scp_operation('10.184.30.28', username='root', password='PassWd', port=22,
+scp_operation('10.184.30.28', username='root', password='PassWd', port=28888,
                              from_path='/tmp/capt.pcap', destination_path='/tmp/capt.pcap',
                              change_file_permission=True, chmod_cmd='chmod 777 /tmp/capt.pcap',
                              channel_creation_sleep=0)
@@ -143,7 +146,7 @@ scp_operation('10.184.30.28', username='root', password='PassWd', port=22,
 
 #### scp_operation function arguments:
 ```
-def scp_operation(fromip, username='root', password='PassWord', port=22,
+def scp_operation(fromip, username='root', password='PassWord', port=28888,
                    from_path='/tmp/capt.pcap', destination_path='/tmp/',
                    change_file_permission=False, chmod_cmd='chmod 777 /tmp/capt.pcap',
                    channel_creation_sleep=0, get_present=1, put_present=0):
@@ -154,7 +157,7 @@ def scp_operation(fromip, username='root', password='PassWord', port=22,
     :param fromip: remote host ip to fetch the file from
     :param username: username to log into remote host
     :param password: password to log into remote host
-    :param port: remote host port to connect to
+    :param port: remote host port to connect to (default is: 28888)
     :param from_path: file to be copied from remote host
     :param destination_path: file to be copied to this path
     :param change_file_permission: if file requires a permission change to copy it to local machine
