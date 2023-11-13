@@ -16,22 +16,24 @@ long_description = """
     analyze_capture: This is a function to parse traffic capture such as e.g. capture.pcap
     
     Help documentation: 
-    https://github.com/patelsamirj111/decolyzer/blob/main/README.md
-    https://github.com/patelsamirj111/decolyzer
+
+    README - https://github.com/patelsamirj111/decolyzer/blob/main/README.md
+
+    github package files - https://github.com/patelsamirj111/decolyzer
 """
 
 setup(
     name = 'decolyzer',
     packages = ['decolyzer'],
-    version = '1.2',
+    version = '1.4',
     license='MIT',
-    description = 'decolyzer package includes functions which can help to enhance your own function implementation',
+    description = 'decolyzer package includes functions (e.g. decorator function) which can help to enhance your own function implementation',
     long_description = long_description,
     long_description_content_type = 'text/x-rst',
     author = 'Samir',
     author_email = 'samir198@gmail.com',
     url = 'https://github.com/patelsamirj111',
-    download_url = 'https://github.com/patelsamirj111/decolyzer/archive/refs/tags/v1.2.tar.gz',
+    download_url = 'https://github.com/patelsamirj111/decolyzer/archive/refs/tags/v1.4.tar.gz',
     keywords = ['decorator', 'python', 'wireshark', 'scp', 'tcpdump', 'paramiko', 'ssh', 'process'],
     install_requires=[
         'paramiko',
