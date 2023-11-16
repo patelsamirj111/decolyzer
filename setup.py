@@ -25,7 +25,7 @@ long_description = """
 setup(
     name = 'decolyzer',
     packages = ['decolyzer'],
-    version = '1.4',
+    version = '1.5',
     license='MIT',
     description = 'decolyzer package includes functions (e.g. decorator function) which can help to enhance your own function implementation',
     long_description = long_description,
@@ -33,7 +33,7 @@ setup(
     author = 'Samir',
     author_email = 'samir198@gmail.com',
     url = 'https://github.com/patelsamirj111',
-    download_url = 'https://github.com/patelsamirj111/decolyzer/archive/refs/tags/v1.4.tar.gz',
+    download_url = 'https://github.com/patelsamirj111/decolyzer/archive/refs/tags/v1.5.tar.gz',
     keywords = ['decorator', 'python', 'wireshark', 'scp', 'tcpdump', 'paramiko', 'ssh', 'process'],
     install_requires=[
         'paramiko',

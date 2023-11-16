@@ -38,20 +38,20 @@ from decolyzer.deco import Ssh, decogoat, channel_creation, scp_operation, analy
 ### 1) Ssh class: Ssh connection creation to an OS supporting ssh based connections:
 #### usage
 ```
-linuxssh = Ssh('10.184.30.28', port=22, username='root', password='PassWord')
+linuxssh = Ssh('10.10.10.2', port=22, username='root', password='PassWord')
 ```
 
 ### 2) decogoat function: The decorator function which allows to run any command/process before and after your own function execution. (e.g. helpful to run tcpdump capture or run top process pre/post your function execution).
 #### usage (Example)
 ```
-@decogoat('10.184.30.28', port=28888, username='root',
+@decogoat('10.10.10.2', port=29999, username='root',
     password='PassWord',
-    command='tcpdump -i colan-x -w /tmp/capt.pcap',
+    command='tcpdump -i eth0 -w /tmp/capt.pcap',
     change_file_permission=True, chmod_cmd='chmod 777 /tmp/capt.pcap',
     channel_creation_sleep=0, delete_file=True,
     delete_cmd='rm -rf /tmp/capt.pcap', terminate_cmd='killall -e tcpdump')
 def create_netconf_session(username, password, *args):
-    connectobj = Sessioncreation('10.184.30.28', "CLI", username, password, "22")
+    connectobj = Sessioncreation('10.10.10.2', "CLI", username, password, "22")
     connectobj.connect()
 ```
 Explanation of the above code: (goal is to run tcpdump process before/after the code execution from create_netconf_session function)
@@ -63,7 +63,7 @@ Explanation of the above code: (goal is to run tcpdump process before/after the 
 
 #### decogoat function arguments:
 ```
-def decogoat(hostip, port=28888, username='root',
+def decogoat(hostip, port=29999, username='root',
     password='password', command='tcpdump -i eth1 -w /tmp/capt.pcap',
     processname='tcpdump', change_file_permission=False,
     chmod_cmd='chmod 777 /tmp/capt.pcap', channel_creation_sleep=0,
@@ -74,7 +74,7 @@ def decogoat(hostip, port=28888, username='root',
     Make sure to manually connect to the targeted host with the intended username/password and execute
         a command to make sure that it does work and will not impact automation.
     :param hostip: ip address of a host machine
-    :param port: default port is 28888 
+    :param port: default port is 29999 
         (connection to linux/unix OS to execute commands or processes e.g. top/tcpdump/ls/cat)
     :param username: username to connect with
     :param password: password fo the username
@@ -90,14 +90,14 @@ def decogoat(hostip, port=28888, username='root',
     :param terminate_cmd: command to terminate the targeted process
     :return: True if all steps passes Or False if failure is encountered
     :usage:
-     @decogoat('10.184.30.28', port=28888, username='root',
+     @decogoat('10.10.10.2', port=29999, username='root',
                     password='PassWord',
-                    command='tcpdump -i colan-x -w /tmp/capt.pcap',
+                    command='tcpdump -i eth0 -w /tmp/capt.pcap',
                     change_file_permission=True, chmod_cmd='chmod 777 /tmp/capt.pcap',
                     channel_creation_sleep=0, delete_file=True,
                     delete_cmd='rm -rf /tmp/capt.pcap', terminate_cmd='killall -e tcpdump')
      def create_netconf_session(username, password, *args):
-         connectobj = Sessioncreation('10.184.30.28', "CLI", username, password, "22")
+         connectobj = Sessioncreation('10.10.10.2', "CLI", username, password, "22")
          connectobj.connect()
     """
 ```
@@ -138,7 +138,7 @@ def channel_creation(ssh_object, cmd, channel_creation_sleep=0):
 ### 4) scp_operation function: The function to copy files between two hosts. This function mimics linux scp command.
 #### usage (Example)
 ```
-scp_operation('10.184.30.28', username='root', password='PassWd', port=28888,
+scp_operation('10.10.10.2', username='root', password='PassWd', port=29999,
                              from_path='/tmp/capt.pcap', destination_path='/tmp/capt.pcap',
                              change_file_permission=True, chmod_cmd='chmod 777 /tmp/capt.pcap',
                              channel_creation_sleep=0)
@@ -146,7 +146,7 @@ scp_operation('10.184.30.28', username='root', password='PassWd', port=28888,
 
 #### scp_operation function arguments:
 ```
-def scp_operation(fromip, username='root', password='PassWord', port=28888,
+def scp_operation(fromip, username='root', password='PassWord', port=29999,
                    from_path='/tmp/capt.pcap', destination_path='/tmp/',
                    change_file_permission=False, chmod_cmd='chmod 777 /tmp/capt.pcap',
                    channel_creation_sleep=0, get_present=1, put_present=0):
@@ -157,7 +157,7 @@ def scp_operation(fromip, username='root', password='PassWord', port=28888,
     :param fromip: remote host ip to fetch the file from
     :param username: username to log into remote host
     :param password: password to log into remote host
-    :param port: remote host port to connect to (default is: 28888)
+    :param port: remote host port to connect to (default is: 29999)
     :param from_path: file to be copied from remote host
     :param destination_path: file to be copied to this path
     :param change_file_permission: if file requires a permission change to copy it to local machine
@@ -168,7 +168,7 @@ def scp_operation(fromip, username='root', password='PassWord', port=28888,
     :param put_present: to put operation to copy file from local machine to remote server
     :return: True if copy operation is pass, Fail otherwise
     :usage
-    scp_operation('10.184.30.28', username='root', password='PassWd', port=22,
+    scp_operation('10.10.10.2', username='root', password='PassWd', port=22,
                              from_path='/tmp/capt.pcap', destination_path='/tmp/capt.pcap',
                              change_file_permission=True, chmod_cmd='chmod 777 /tmp/capt.pcap',
                              channel_creation_sleep=0)
@@ -235,7 +235,7 @@ def analyze_capture(cap_path, display_filter='', keep_packets=True, only_summari
     'flags_rb', 'frag_offset', 'get', 'get_field', 'get_field_by_showname', 'get_field_value', 'has_field', 'hdr_len',
     'host', 'id', 'layer_name', 'len', 'pretty_print', 'proto', 'raw_mode', 'src', 'src_host', 'ttl', 'version']
     (Pdb) print(capobj_first_pkt.ip.src_host)
-    10.184.30.28
+    10.10.10.2
     (Pdb) print(capobj_first_pkt.ip.dst_host)
     10.179.192.241
     (Pdb) dir(capobj_first_pkt.eth)
@@ -265,7 +265,7 @@ def analyze_capture(cap_path, display_filter='', keep_packets=True, only_summari
     'options_type', 'options_type_class', 'options_type_copy', 'options_type_number', 'port', 'pretty_print',
     'raw_mode', 'seq', 'srcport', 'stream', 'window_size', 'window_size_scalefactor', 'window_size_value']
     (Pdb) print(capobj_first_pkt.tcp.srcport)
-    28888
+    29999
     (Pdb) print(capobj_first_pkt.tcp.dstport)
     32772
     (Pdb)
@@ -276,9 +276,9 @@ def analyze_capture(cap_path, display_filter='', keep_packets=True, only_summari
     (Pdb) dir(capobj_first_pkt.radius)
     ['', '__class__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattr__', '__getattribute__', '__getstate__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__slots__', '__str__', '__subclasshook__', '_all_fields', '_field_prefix', '_get_all_field_lines', '_get_all_fields_with_alternates', '_get_field_or_layer_repr', '_get_field_repr', '_layer_name', '_pretty_print_layer_fields', '_sanitize_field_name', 'authenticator', 'calling_station_id', 'code', 'field_names', 'get', 'get_field', 'get_field_by_showname', 'get_field_value', 'has_field', 'id', 'layer_name', 'length', 'nas_identifier', 'nas_ip_address', 'nas_port', 'nas_port_type', 'pretty_print', 'raw_mode', 'req', 'service_type', 'user_name', 'user_password_encrypted']
     (Pdb) capobj_first_pkt.radius.nas_ip_address
-    '10.184.30.28'
+    '10.10.10.2'
     (Pdb) capobj_first_pkt.radius.nas_identifier
-    '6500-RLS-NNTMRT0P09TH'
+    '6000-ABC-Switch'
     (Pdb) capobj_first_pkt.radius.nas_port
     '1415531'
     (Pdb) capobj_first_pkt.radius.pretty_print
@@ -292,20 +292,20 @@ def analyze_capture(cap_path, display_filter='', keep_packets=True, only_summari
             Attribute Value Pairs
             User-Name: su
             User-Password (encrypted): f106af72e91ad3c4ea17b864a1aceb1f
-            NAS-Identifier: 6500-RLS-NNTMRT0P09TH
+            NAS-Identifier: 6000-ABC-Switch
             NAS-Port: 1415531
             NAS-Port-Type: Virtual (5)
             Service-Type: Authenticate-Only (8)
             Calling-Station-Id: /ssh_shell_10.179.192.241:60826
-            NAS-IP-Address: 10.184.30.28 (10.184.30.28)
+            NAS-IP-Address: 10.10.10.2 (10.10.10.2)
             AVP: l=4  t=User-Name(1): su
             AVP: l=18  t=User-Password(2): Encrypted
-            AVP: l=23  t=NAS-Identifier(32): 6500-RLS-NNTMRT0P09TH
+            AVP: l=23  t=NAS-Identifier(32): 6000-ABC-Switch
             AVP: l=6  t=NAS-Port(5): 1415531
             AVP: l=6  t=NAS-Port-Type(61): Virtual(5)
             AVP: l=6  t=Service-Type(6): Authenticate-Only(8)
             AVP: l=33  t=Calling-Station-Id(31): /ssh_shell_10.179.192.241:60826
-            AVP: l=6  t=NAS-IP-Address(4): 10.184.30.28
+            AVP: l=6  t=NAS-IP-Address(4): 10.10.10.2
     (Pdb)
     """
 ```
