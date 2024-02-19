@@ -211,9 +211,9 @@ def analyze_capture(cap_path, display_filter='', keep_packets=True, only_summari
         log.info("total packets returned:{}".format(cpt_ret[2]['total_pkts']))
         #cpt_ret[0] is True
         #cpt_ret[1] is to level capture object
-        #  cat_ret[1][0] first packet obj
-        #  cat_ret[1][1] second packet obj
-        #  cat_ret[1][total_packets-1] last packet obj
+        #  cpt_ret[1][0] first packet obj
+        #  cpt_ret[1][1] second packet obj
+        #  cpt_ret[1][total_packets-1] last packet obj
         #cpt_ret[2] is total packets captured
         capobj_first_pkt = cpt_ret[1][0]
     (Pdb) dir(capobj_first_pkt)
