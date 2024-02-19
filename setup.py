@@ -25,7 +25,7 @@ long_description = """
 setup(
     name = 'decolyzer',
     packages = ['decolyzer'],
-    version = '1.5',
+    version = '1.6',
     license='MIT',
     description = 'decolyzer package includes functions (e.g. decorator function) which can help to enhance your own function implementation',
     long_description = long_description,
