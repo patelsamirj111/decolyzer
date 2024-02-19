@@ -30,7 +30,7 @@ setup(
     description = 'decolyzer package includes functions (e.g. decorator function) which can help to enhance your own function implementation',
     long_description = long_description,
     long_description_content_type = 'text/x-rst',
-    author = 'Samir',
+    author = 'Samir Patel',
     author_email = 'samir198@gmail.com',
     url = 'https://github.com/patelsamirj111',
     download_url = 'https://github.com/patelsamirj111/decolyzer/archive/refs/tags/v1.5.tar.gz',
